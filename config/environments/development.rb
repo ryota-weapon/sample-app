@@ -87,7 +87,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
   host = 'humble-journey-grj7pjgj7rp3wqxg-3000.app.github.dev' # ここをコピペすると失敗します。自分の環境のホストに変えてください。
   # クラウドIDEの場合は以下をお使いください
-  config.action_mailer.default_url_options = { host: "example.com", protocol: 'http' }
+  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
   # config.action_mailer.default_url_options = { host: 'example.com' }
   # localhostで開発している場合は以下をお使いください
   # config.action_mailer.default_url_options = { host: host, protocol: 'http' }
