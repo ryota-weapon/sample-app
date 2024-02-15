@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # get 'sessions/new'
   resources :users
-  resources :account_activations, only: [:edit]
+  resources :account_acivations, only: [:edit]
 
   root "static_pages#home" 
   
