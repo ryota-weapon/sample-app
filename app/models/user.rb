@@ -1,5 +1,9 @@
 class User < ApplicationRecord
-  before_save { email.downcase! }
+  attr_accessor :remember_token  #アクセス用の仮想の属性
+  attr_accessor :activation_token
+  before_save :downcase_email
+  before_create :create_activation_digest
+
   validates :name, presence: true, length: {maximum: 50}
   # validates(:name, presence: true)
   
@@ -20,7 +24,7 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)                           
   end
 
-  attr_accessor :remember_token  #アクセス用の仮想の属性
+
   def remember
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
@@ -47,5 +51,14 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+  private
+  def downcase_email
+    self.email = email.downcase
+  end
+
+  def create_activation_digest
+    self.activation_token = User.new_token
+    self.activation_digest = User.digest(activation_token)
+  end
 
 end
