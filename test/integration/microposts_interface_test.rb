@@ -20,7 +20,9 @@ class MicropostsInterfaceTest < MicropostsInterface
       post microposts_path, params: { micropost: { content: "" } }
     end
     assert_select 'div#error_explanation'
+    assert_template "static_pages/hoge"
     assert_select 'a[href=?]', '/?page=2'  # 正しいページネーションリンク
+    #　これnextボタンか, ツイートの数に依存するのかな
   end
 
   test "should create a micropost on valid submission" do
