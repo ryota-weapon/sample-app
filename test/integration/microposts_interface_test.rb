@@ -52,3 +52,10 @@ class MicropostsInterfaceTest < MicropostsInterface
     assert_select 'a', { text: 'delete', count: 0 }
   end
 end
+
+class ImageUploadTest < MicropostsInterface
+  test "should have a file input field for images" do
+    get root_path
+    assert_select 'input[type="file"]'
+  end
+end
